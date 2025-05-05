@@ -14,10 +14,47 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_04_164805) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "actors", force: :cascade do |t|
+    t.string "name"
+    t.date "dob"
+    t.text "bio"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "characters", force: :cascade do |t|
+    t.integer "movie_id"
+    t.integer "actor_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "directors", force: :cascade do |t|
+    t.string "name"
+    t.date "dob"
+    t.text "bio"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "items", force: :cascade do |t|
     t.string "link_url"
     t.string "link_description"
     t.string "thumbnail_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "movies", force: :cascade do |t|
+    t.string "title"
+    t.integer "year"
+    t.integer "duration"
+    t.text "description"
+    t.string "image"
+    t.integer "director_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
